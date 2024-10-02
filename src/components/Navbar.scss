@@ -1,0 +1,18 @@
+nav {
+    padding: 15px;
+    flex-direction: row-reverse;
+    display: flex;
+    ul {
+        display: flex;
+        list-style: none;
+        li {
+            font-size: 1.4rem;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 0 25px;
+        }
+        a {
+            font-weight: bolder;
+        }
+    }
+}

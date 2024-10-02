@@ -1,0 +1,33 @@
+#banner {
+    height: 30rem;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 50px;
+    img {
+        height: 100%;
+        width: auto;
+    }
+    div {
+        h1 {
+            font-weight: bold;
+            font-size: 3rem;
+        }
+        width: 25%;
+        font-size: 20px;
+        height: 100%;
+        justify-content: space-evenly;
+        display: flex;
+        flex-direction: column;
+        button {
+            border: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            background-color: magenta;
+            border-radius: 12px;
+            outline: none;
+            padding: 8px;  
+            width: fit-content;
+        }
+    }
+}

@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    color: white;
+}
+
+#main-container {
+    background: radial-gradient(
+        ellipse at 25% 50%,  /* Centering the gradient */
+        #0a1626 10%,         /* Dark center */
+        #152c4d 30%,         /* Medium blue for diamond border */
+        #0f243b 50%,         /* Darker shade transitioning inward */
+        #152c4d 70%,         /* Another medium blue for the outer part of the diamond */
+        #0a1626 100%         /* Darker corners */
+    );
+}
+
+.section {
+    height: 28rem;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 50px;
+    div {
+        h2 {
+            font-weight: bold;
+        }
+        width: 35%;
+        font-size: 20px;
+        height: 100%;
+        justify-content: space-evenly;
+        display: flex;
+        flex-direction: column;
+        button {
+            color: black;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            outline: none;
+            padding: 8px;  
+            width: fit-content;
+            background-color: white;
+        }
+    }
+}
