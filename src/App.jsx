@@ -3,6 +3,8 @@ import Navbar from './components/Navbar'
 import native from "./assets/native-feeling1.png"
 import builder from "./assets/builder-dnd1.png"
 import Banner from './components/Banner'
+import FeatureSection from './components/FeatureSection'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
           <img src={native} />
           <div>
               <h2>Easy building experience</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, aut adipisci esse officiis cupiditate repellat accusamus ea labore ratione reiciendis debitis, minus beatae. Esse aut veniam ut necessitatibus omnis cum magni commodi doloremque corporis.</p>
+              <p>
+                All you have to do is drag and drop blocks to create your app. Even if you have custom needs, you can always add custom code.
+              </p>
               <button>Try it now</button>
           </div>
       </section>
@@ -21,10 +25,14 @@ function App() {
           <img src={builder} />
           <div>
               <h2>Easy building experience</h2>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, aut adipisci esse officiis cupiditate repellat accusamus ea labore ratione reiciendis debitis, minus beatae. Esse aut veniam ut necessitatibus omnis cum magni commodi doloremque corporis.</p>
+              <p>
+                All you have to do is drag and drop blocks to create your app. Even if you have custom needs, you can always add custom code.
+              </p>
               <button>Try it now</button>
           </div>
       </section>
+      <FeatureSection />
+      <Footer />
     </div>
   )
 }

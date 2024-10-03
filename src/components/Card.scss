@@ -1,0 +1,35 @@
+.card{
+    padding: 50px;
+}
+
+.card-icon {
+    background-color:rgba(26, 95, 255, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25%;
+    width: 25%;
+    margin: auto;
+    position: relative;
+    top: 12.5%;
+    padding: 8px 12px;
+    border-radius: 12px;
+    width: fit-content;
+}
+
+.card-description {
+    text-align: center;
+    padding: 30px;
+    p {
+        font-weight: 300;
+    }
+    font-size: 1.2rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--card-bg);
+    height: 100%;
+}

@@ -1,0 +1,26 @@
+#footer {
+    font-size: 1.2rem;
+    justify-content: space-around;
+    padding: 20px;
+    background-color:rgba(0, 0, 0, 0.69);
+    align-items: center;
+    display: flex;
+    .footer-column{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+    }
+    .footer-title{
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .footer-column {
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+}

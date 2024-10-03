@@ -20,13 +20,14 @@
         flex-direction: column;
         button {
             border: none;
-            font-size: 1.3rem;
+            font-size: 15px;
             font-weight: bold;
             color: white;
-            background-color: magenta;
-            border-radius: 12px;
+            background-color: var(--pink);
+            cursor: pointer;
+            border-radius: 50px;
             outline: none;
-            padding: 8px;  
+            padding: 12px;  
             width: fit-content;
         }
     }
