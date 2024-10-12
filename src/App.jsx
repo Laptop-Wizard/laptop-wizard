@@ -1,39 +1,19 @@
 import './App.scss'
-import Navbar from './components/Navbar'
-import native from "./assets/native-feeling1.png"
-import builder from "./assets/builder-dnd1.png"
-import Banner from './components/Banner'
-import FeatureSection from './components/FeatureSection'
-import Footer from './components/Footer'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './pages/Home';
+import Login from './pages/Login';
 
 function App() {
   return (
-    <div id='main-container'>
-      <Navbar />
-      <Banner />
-      <section className='section'>
-          <img src={native} />
-          <div>
-              <h2>Easy building experience</h2>
-              <p>
-                All you have to do is drag and drop blocks to create your app. Even if you have custom needs, you can always add custom code.
-              </p>
-              <button>Try it now</button>
-          </div>
-      </section>
-      <section className='section' style={{'flexDirection': 'row-reverse'}}>
-          <img src={builder} />
-          <div>
-              <h2>Easy building experience</h2>
-              <p>
-                All you have to do is drag and drop blocks to create your app. Even if you have custom needs, you can always add custom code.
-              </p>
-              <button>Try it now</button>
-          </div>
-      </section>
-      <FeatureSection />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div id='main-container'>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        {/* <Route path='/signup' element={<Signup />} /> */}
+      </Routes>
+      </div>
+    </BrowserRouter>
   )
 }
 
