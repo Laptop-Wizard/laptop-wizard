@@ -9,10 +9,14 @@
     color: white;
     --pink: rgba(197, 5, 154, 1);
     --card-bg:rgba(26, 32, 44, 1); 
+    --dark-bg: rgba(33,33,33,0.9);
+    --light-bg: rgba(44,44,44,0.9);
+    --light-grey: rgba(222,222,222,0.9);
 }
 
 
 #main-container {
+    background-color: black;
     background: radial-gradient(
         ellipse at 25% 50%,  /* Centering the gradient */
         #0a1626 10%,         /* Dark center */

@@ -6,7 +6,9 @@ function Navbar() {
   return (
     <nav>
         <ul>
-            <li><a>Chat Bot</a></li>
+            <li>
+              <Link to="/chatbot">Chatbot</Link>
+            </li>
             <li><a>Technical Assistance</a></li>
             <li><a>Contact Us</a></li>
             <li>
