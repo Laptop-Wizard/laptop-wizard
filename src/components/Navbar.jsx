@@ -9,7 +9,9 @@ function Navbar() {
             <li>
               <Link to="/chatbot">Chatbot</Link>
             </li>
-            <li><a>Technical Assistance</a></li>
+            <li>
+              <Link to="/support">Technical Assistance</Link>
+            </li>
             <li><a>Contact Us</a></li>
             <li>
               <Link to="/login">Log In</Link>

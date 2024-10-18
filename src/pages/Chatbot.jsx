@@ -4,6 +4,7 @@ import attach from '../assets/attach.png';
 import usericon from '../assets/user.png';
 import uparrow from "../assets/uparrow.png";
 import boticon from "../assets/bot_circular.jpg";
+import Navbar from '../components/Navbar';
 
 function Chatbot() {
   const [messages, setMessages] = useState([]);
@@ -55,8 +56,13 @@ function Chatbot() {
           </button>
         </div>
       </div>
-      <div id='user-bar' className='radius-large'></div>
-      <div id='upload' className='radius-small'></div>
+      <div id='user-bar' className='radius-large'>
+        <img src={usericon} alt="" />
+        <h4>Rakesh Dharne</h4>
+      </div>
+      <div id='upload' className='radius-small'>
+        <h4>Chat History</h4>
+      </div>
     </div>
   );
 }

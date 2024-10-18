@@ -6,6 +6,7 @@ import google from "../assets/google.png"
 import github from "../assets/github.png"
 import facebook from "../assets/facebook.png"
 import "./Login.scss"
+import { Link } from 'react-router-dom'
 
 function Login() {
     const Options = {
@@ -86,7 +87,11 @@ function Login() {
                 <div className='links flex column'>
                     <div className='flex justify-center'>
                         {option == Options.LOGIN && <a onClick={() => setOption(Options.SIGNUP)}>Don't have an account? Sign Up</a>}
+                        {/* {option == Options.LOGIN && <Link to="/tech-register">Register as Technician</Link>} */}
                         {option == Options.SIGNUP && <a onClick={() => setOption(Options.LOGIN)}>Already registered? Log In</a>}
+                    </div>
+                    <div>
+                        {option == Options.LOGIN && <Link to="/tech-register">Register as Technician</Link>}
                     </div>
                     <div className='flex space-between'>
                         <a href="">Terms & Conditions</a>

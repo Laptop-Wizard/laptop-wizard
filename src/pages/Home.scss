@@ -1,3 +1,13 @@
+#home-container {
+    background: radial-gradient(
+        ellipse at 25% 50%,  /* Centering the gradient */
+        #0a1626 10%,         /* Dark center */
+        #152c4d 30%,         /* Medium blue for diamond border */
+        #0f243b 50%,         /* Darker shade transitioning inward */
+        #152c4d 70%,         /* Another medium blue for the outer part of the diamond */
+        #0a1626 100%         /* Darker corners */
+    );
+}
 .section {
     height: 28rem;
     display: flex;

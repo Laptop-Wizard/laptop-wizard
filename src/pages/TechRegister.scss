@@ -1,0 +1,41 @@
+#tech-register-container {
+    min-height: 100vh;
+    max-height: fit-content;
+    div {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+        gap: 10px;
+    }
+    #fields-container {
+        margin: auto;
+        padding: 30px;
+        width: 70vw;
+        button {
+            padding: 16px 24px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            margin: auto;
+            width: fit-content;
+            background-color: var(--pink);
+        }
+    }
+    label,p {
+        color: var(--cool-blue)
+    }
+    input[type="file"] {
+        padding: 0;
+        font-size: 1.2rem;
+        border: transparent;
+        outline: none;
+    }
+    select, option, input[type="text"] {
+        color: var(--dark-grey);
+        border: transparent;
+        outline: none;
+        border-radius: 8px;
+        font-size: 1.2rem;
+        padding: 8px 12px;
+    }
+}

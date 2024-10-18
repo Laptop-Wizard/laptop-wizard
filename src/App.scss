@@ -2,7 +2,6 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-weight: normal;
@@ -12,11 +11,13 @@
     --dark-bg: rgba(33,33,33,0.9);
     --light-bg: rgba(44,44,44,0.9);
     --light-grey: rgba(222,222,222,0.9);
+    --cool-blue: rgba(39, 144, 220, 1);
+    --grey-bg: rgba(217, 217, 217, 1);
+    --dark-grey: rgba(75, 65, 65, 1);
 }
 
 
 #main-container {
-    background-color: black;
     background: radial-gradient(
         ellipse at 25% 50%,  /* Centering the gradient */
         #0a1626 10%,         /* Dark center */

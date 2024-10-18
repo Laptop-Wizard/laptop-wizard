@@ -9,7 +9,7 @@ import "./Home.scss"
 
 function Home() {
   return (
-    <>
+    <div id='home-container'>
       <Navbar />
       <Banner />
       <section className='section'>
@@ -34,7 +34,7 @@ function Home() {
       </section>
       <FeatureSection />
       <Footer />
-    </>
+    </div>
   )
 }
 

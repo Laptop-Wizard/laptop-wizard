@@ -1,0 +1,92 @@
+.technician-card {
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--grey-bg);
+    .banner {
+        background-color: var(--cool-blue);
+        height: 30%;
+        .circle {
+            border: 7px solid white;
+            background-color: white;
+            height: 72px;
+            width: 72px;
+            margin: auto;
+            border-radius: 50px;
+            position: relative;
+            bottom: calc(-65px/2);
+        }
+    }
+    h3 {
+        color: var(--cool-blue);
+    }
+    h5, p {
+        color: var(--dark-grey);
+    }
+    h3, p {
+        text-align: center;
+    }
+    height: fit-content;
+    .help {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        img{
+            height: 25px;
+            margin-right: 10px;
+        }
+    }
+    .technician-info {
+        img{
+            height: 25px;
+            margin-right: 10px;
+        }
+        padding: 5px 8px 20px;
+        margin-top: calc(65px/2);
+        display: flex;
+        flex-direction: column;
+        .info-grid {
+            margin: 8px 0;
+            align-items: center;
+            p {
+                font-size: 0.8rem;
+                text-align: left;
+            }
+            display: grid;
+            grid-template-columns: auto 1fr 2fr;
+        }
+    }
+}
+
+#support-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    height: 100vh;
+    .card-grid {
+        width: 80vw;
+        gap: 3rem;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+    }
+    #searchbar {
+        display: flex;
+        width: 40vw;
+        background-color: white;
+        align-items: center;
+        border-radius: 8px;
+        img{
+            height: 25px;
+            margin: 0 10px;
+        }
+        input {
+            color: var(--light-bg);
+            background-color: transparent;
+            outline: none;
+            border: none;
+            padding: 8px;
+            font-size: 1.4rem;
+        }
+    }
+}
