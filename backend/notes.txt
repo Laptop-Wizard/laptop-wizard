@@ -1,0 +1,5 @@
+python -m pip install "pymongo[src]"
+
+mongodb://localhost:27017/
+
+Gemini api kEY --> AIzaSyDAGgewYDmpe1nmfvJq9QRhB4h9_0wIc6Y
