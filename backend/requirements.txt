@@ -1,4 +1,4 @@
-Flask
-Flask-PyMongo
-Flask-WTF
-flask-cors
+flask
+flask_cors
+requests
+google-generativeai

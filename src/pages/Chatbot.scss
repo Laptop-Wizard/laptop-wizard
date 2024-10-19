@@ -47,7 +47,6 @@
         }
         .user-query {
             background-color: var(--light-bg);
-            max-width: 80%;
         }
         .chat-message {
             display: flex;
@@ -63,8 +62,8 @@
                 border: var(--light-grey);
             }
             p {
-                min-width: 0;
-                width: 100%;
+                width: fit-content;
+                max-width: 80%;
                 word-wrap: break-word;
                 border-radius: 8px;
                 color: var(--light-grey);

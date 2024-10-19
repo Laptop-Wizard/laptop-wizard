@@ -7,14 +7,56 @@ import github from "../assets/github.png"
 import facebook from "../assets/facebook.png"
 import "./Login.scss"
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function Login() {
+    const navigate = useNavigate()
     const Options = {
         LOGIN: 'login',
         SIGNUP: 'signup',
         FORGOT: 'forgot',
     };
     const [option, setOption] = useState(Options.LOGIN);
+    const handleLogin = async () => {
+        const email = document.querySelector('input[placeholder="Email"]').value;
+        const password = document.querySelector('input[placeholder="Password"]').value;
+
+         // Prepare the data to send
+        const data = {
+            email,
+            password,
+        };
+        try {
+            const response = await axios.post('http://localhost:5000/login', data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+    
+            if (response.status === 200) {
+                console.log("User data: ", response.data);
+            } else {
+                console.error(response.data.error);
+                return
+            }
+        } catch (error) {
+            console.error("Login error: ", error);
+            return
+        }
+        navigate('/chatbot')
+    }
+    const handleSignup = () => {
+        const username = document.querySelector('input[placeholder="Username"]').value;
+        const email = document.querySelector('input[placeholder="Email / Phone"]').value;
+        const password = document.querySelector('input[placeholder="Password"]').value;
+        const confirmPassword = document.querySelector('input[placeholder="Confirm Password"]').value;
+        if(password !== confirmPassword) {
+            console.log("Passwords do not match");
+            return
+        }
+        console.log(`User info: ${ username, email, password, confirmPassword }`);
+    };
     const renderHeading = () => {
         switch (option) {
           case Options.LOGIN:
@@ -33,13 +75,13 @@ function Login() {
             return (
                 <>
                     <p>Glad you're back!</p>
-                    <input type="text" placeholder='Username' />
-                    <input type="text" placeholder='Password' />
+                    <input type="text" placeholder='Email' />
+                    <input type="password" placeholder='Password' />
                     <div>
                         <input id='remember-checkbox' type="checkbox" />
                         <label htmlFor="remember-checkbox">Remember Me</label>
                     </div>
-                    <button className='purple-gradient'>Login</button>
+                    <button className='purple-gradient' onClick={handleLogin}>Login</button>
                     <a className='text-center' onClick={() => setOption(Options.FORGOT)}>Forgot Password</a>
                 </>)
           case Options.SIGNUP:
@@ -47,9 +89,9 @@ function Login() {
                     <p>Just some details to get you in.!</p>
                     <input type="text" placeholder='Username' />
                     <input type="text" placeholder='Email / Phone' />
-                    <input type="text" placeholder='Password' />
-                    <input type="text" placeholder='Confirm Password' />
-                    <button className='blue-gradient'>Signup</button>
+                    <input type="password" placeholder='Password' />
+                    <input type="password" placeholder='Confirm Password' />
+                    <button className='blue-gradient' onClick={handleSignup}>Signup</button>
                 </>);
           case Options.FORGOT:
             return (
@@ -87,7 +129,6 @@ function Login() {
                 <div className='links flex column'>
                     <div className='flex justify-center'>
                         {option == Options.LOGIN && <a onClick={() => setOption(Options.SIGNUP)}>Don't have an account? Sign Up</a>}
-                        {/* {option == Options.LOGIN && <Link to="/tech-register">Register as Technician</Link>} */}
                         {option == Options.SIGNUP && <a onClick={() => setOption(Options.LOGIN)}>Already registered? Log In</a>}
                     </div>
                     <div>

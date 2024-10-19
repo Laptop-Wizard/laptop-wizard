@@ -61,14 +61,14 @@ function TechRegister() {
             <Navbar />
             <div id='tech-register-container'>
                 <div id='fields-container'>
-                    {inputFields.map(field => {
+                    {inputFields.map((field,index) => {
                         if(field.type === "text"){
-                            return <div>
+                            return <div key={index}>
                                 <p>{field.title}</p>
                                 <input type="text"  placeholder={field.placeholder} />
                             </div>
                         } else if (field.type === "dropdown") {
-                            return <div>
+                            return <div key={index}>
                                 <label htmlFor=''>{field.title}</label>
                                 <select name={field.name} id={field.name}>
                                     <option value="sangli">Sangli</option>
@@ -77,7 +77,7 @@ function TechRegister() {
                                 </select>
                             </div>
                         } else if (field.type === "upload") {
-                            return <div>
+                            return <div key={index}>
                                 <p>{field.title}</p>
                                 <input type="file" id="myFile" name="filename" />
                             </div>
