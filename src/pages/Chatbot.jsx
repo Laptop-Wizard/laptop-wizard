@@ -40,21 +40,21 @@ function Chatbot() {
       }
     }
     getMessages()
-    const handleKeyDown = (event) => {
-      if (event.key === 'Enter') {
-        handleSendMessage('chatbot-answer');
-      } 
-    };
+    // const handleKeyDown = (event) => {
+    //   if (event.key === 'Enter') {
+    //     handleSendMessage('chatbot-answer');
+    //   } 
+    // };
 
-    document.addEventListener('keydown', handleKeyDown);
+    // document.addEventListener('keydown', handleKeyDown);
 
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
+    // return () => {
+    //   document.removeEventListener('keydown', handleKeyDown);
+    // };
   }, []);
   
   const getChatbotResponse = async (userQuery) => {
-    const data = { question: userQuery }
+    const data = { question: userQuery, messages }
     try {
         const response = await axios.post('http://localhost:5000/ask-query', data, {
             headers: {
@@ -74,6 +74,13 @@ function Chatbot() {
         return
     }
   }
+
+//  Return summary in json format.
+/*
+
+
+
+*/
 
   const handleChatbotResponse = async (answer) => {
     const data = {

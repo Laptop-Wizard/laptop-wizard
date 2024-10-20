@@ -3,11 +3,14 @@ from flask import Flask, jsonify, request
 from pymongo import MongoClient
 from flask_cors import CORS
 from datetime import datetime
+from dotenv import load_dotenv
 import google.generativeai as genai
 import os
 
-# AIzaSyDAGgewYDmpe1nmfvJq9QRhB4h9_0wIc6Y
-genai.configure(api_key="AIzaSyDAGgewYDmpe1nmfvJq9QRhB4h9_0wIc6Y")
+load_dotenv()
+api_key=os.getenv('GEMINI_API_KEY')
+
+genai.configure(api_key=api_key)
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}}, supports_credentials=True)
@@ -18,19 +21,6 @@ client = MongoClient("mongodb://localhost:27017/")
 # mongo = client.<database>
 mongo = client.laptopwizard
 
-# test
-@app.route('/get-data', methods=['GET'])
-def get_laptops():
-    user_collection = mongo['user'] # fetch 'user' collection
-    users = user_collection.find() # get all documents, returns a cursor
-
-    data = list(users) # convert to a list for convenience
-    user_list = []
-    for userdata in data:
-        user_list.append(userdata['email']) # get email field in each document
-
-    return jsonify(user_list)
-
 @app.route('/get-msgs', methods=['GET'])
 def getmsgs():
     # Access the 'user' collection
@@ -40,7 +30,7 @@ def getmsgs():
     user = users_collection.find_one({"email": "user@gmail.com"})
     if user:
         msglist = [{"message": obj["message"], "sender": obj["sender"],  "timestamp": obj["timestamp"]} for obj in user['messages']]
-        print(msglist)
+        # print(msglist)
         return jsonify({"message": "Success", "messages": msglist}), 200
     else:
         return jsonify({"error": "User not found"}), 404
@@ -48,39 +38,37 @@ def getmsgs():
 @app.route('/ask-query', methods=['POST'])
 def ask_query():
     data = request.json
+    messages = data.get('messages')
     question = data.get('question')
     model = genai.GenerativeModel("gemini-1.5-flash")
-    response = model.generate_content(question)
-    print(response.text)
+    summarization_prompt =  """
+        summarize the chat history. only summarize that message content of the user and chatbot. For example:
+        [
+        {
+        sender: user,
+        message: <question 1>
+        },
+        {
+        sender: chatbot,
+        message: <answer>
+        },
+        {
+        sender: user,
+        message: <question 2>
+        },
+        {
+        sender: chatbot,
+        message: <answer>
+        },
+        ]
+
+        Return summary in json format, not plaintext.
+    """
+    summarized_context = model.generate_content(f"Context: {messages}\n{summarization_prompt}\nIf context is empty,simply return 'Empty'.")
+    combined_input = f"Context: {summarized_context.text}\nQuestion: {question}\nIf context provided is 'Empty', just answer like you normally would, don't mention anything about context, just answer the question."
+    response = model.generate_content(combined_input)
+    # response = model.generate_content(question)
     return jsonify({"answer": response.text})
-
-    # Define the Gemini API endpoint and parameters
-    # AIzaSyDAGgewYDmpe1nmfvJq9QRhB4h9_0wIc6Y
-    api_url = "https://api.gemini.com/v1/query"  # Replace with the correct Gemini API endpoint
-    headers = {
-        'Content-Type': 'application/json',
-        'Authorization': f'Bearer AIzaSyDAGgewYDmpe1nmfvJq9QRhB4h9_0wIc6Y'  # Replace with your actual token
-    }
-    payload = {
-        "query": question  # Adjust this based on Gemini's API documentation
-    }
-
-    try:
-        # Send a request to the Gemini API
-        response = requests.post(api_url, json=payload, headers=headers)
-
-        if response.status_code == 200:
-            # Return the response data from Gemini API
-            response_data = response.json()
-            return jsonify({"answer": response_data}), 200
-        else:
-            # Handle non-200 responses from Gemini API
-            return jsonify({"error": "Failed to get a valid response from Gemini API"}), response.status_code
-
-    except requests.exceptions.RequestException as e:
-        # Handle request exceptions
-        return jsonify({"error": f"An error occurred: {str(e)}"}), 500
-    
 
 @app.route('/upload-msg', methods=['POST'])
 def upload_msg():
@@ -118,11 +106,9 @@ def signup():
     
     # You can now save this user data to your MongoDB (or any other DB)
     user = users_collection.find_one({"email": email})
-    print("Reached")
     
     if user:
         if (user['password'] == password):
-            user_messages = user['messages']
             return jsonify(
                 {"message": "Login successful", 
                  "user": user['email'],

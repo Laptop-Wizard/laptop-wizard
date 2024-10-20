@@ -3,3 +3,27 @@ python -m pip install "pymongo[src]"
 mongodb://localhost:27017/
 
 Gemini api kEY --> AIzaSyDAGgewYDmpe1nmfvJq9QRhB4h9_0wIc6Y
+
+Chatbot summary format:
+
+summarize the chat history. only summarize that message content of the user and chatbot. For example:
+[
+{
+sender: user,
+message: <question 1>
+},
+{
+sender: chatbot,
+message: <answer>
+},
+{
+sender: user,
+message: <question 2>
+},
+{
+sender: chatbot,
+message: <answer>
+},
+]
+
+ Return summary in json format, not plaintext.
