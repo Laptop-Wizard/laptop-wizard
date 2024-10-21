@@ -2,15 +2,15 @@ import React from 'react'
 import profileicon from "../assets/weui_contacts-filled.png"
 import "./Card.scss"
 
-function Card() {
+function Card({heading,content}) {
   return (
     <div className='card'>
         <div className='card-icon'>
             <img src={profileicon} />
         </div>
         <div className='card-description'>
-            <h3>Hidden fields</h3>
-            <p>Include data in your form URL to segment your user and use its data directly in your form.</p>
+            <h3>{heading}</h3>
+            <p>{content}</p>
         </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import "./Chatbot.scss";
 import attach from '../assets/attach.png';
 import usericon from '../assets/user.png';
@@ -10,6 +10,18 @@ import { marked } from 'marked';
 
 function Chatbot() {
   const [messages, setMessages] = useState([]);
+
+   // Create a reference to the chat container
+   const chatRef = useRef(null);
+
+   useEffect(() => {
+    if (chatRef.current) {
+      chatRef.current.scrollTo({
+        top: chatRef.current.scrollHeight,
+        behavior: 'smooth'  // Enable smooth scrolling animation
+      });
+    }
+  }, [messages]); 
 
   useEffect(() => {
     const getMessages = async () => {
@@ -74,13 +86,6 @@ function Chatbot() {
         return
     }
   }
-
-//  Return summary in json format.
-/*
-
-
-
-*/
 
   const handleChatbotResponse = async (answer) => {
     const data = {
@@ -147,7 +152,8 @@ function Chatbot() {
   return (
     <div id='chatbot-grid'>
       <div id='chatbot-window' className='radius-small'>
-        <div id="chat">
+        {/* <div id="chat" > */}
+        <div id="chat" ref={chatRef}>
           {messages.map((msg, index) => (
             <div key={index} className={`chat-message ${msg.type === "user" && 'reverse'}`}>
               {msg.type === 'chatbot' && 
@@ -157,7 +163,7 @@ function Chatbot() {
                 msg.type === "user" ? (
                   <p className="user-query">{msg.content}</p>
                 ) : (
-                  <p className='chatbot-answer' dangerouslySetInnerHTML={{__html: marked(msg.content)}}></p>
+                  <div className='chatbot-answer' dangerouslySetInnerHTML={{__html: marked(msg.content)}}></div>
                 )
               }
             </div>

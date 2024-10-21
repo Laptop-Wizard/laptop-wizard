@@ -6,7 +6,10 @@ function Banner() {
   return (
     <section id='banner'>
         <div>
-            <h1>Welcome to Laptop-Wizard</h1>
+            {/* <h1>Welcome to Laptop-Wizard</h1> */}
+            <h1>
+            Your hardware concerns, solved with expert guidance.
+            </h1>
             <button>GET STARTED</button>
         </div>
         <img src={robotgif}/>

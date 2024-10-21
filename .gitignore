@@ -15,6 +15,7 @@ dist-ssr
 backend/application/__pycache__
 backend/venv
 backend/.env
+backend/faiss_index/
 
 # Editor directories and files
 .vscode/*

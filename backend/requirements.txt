@@ -1,5 +1,10 @@
 flask
+langchain
 flask_cors
+langchain_google_genai
+langchain_community
+faiss-cpu
 requests
 google-generativeai
 python-dotenv
+PyPDF2

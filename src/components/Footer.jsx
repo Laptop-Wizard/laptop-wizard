@@ -7,7 +7,7 @@ function Footer() {
         <div className='footer-column'>
             <p className='footer-title'>Made by Team</p>
         </div>
-        <div className='footer-column'>
+        {/* <div className='footer-column'>
             <p className='footer-title'>Product</p>
             <ul>
                 <li>Status</li>
@@ -24,7 +24,7 @@ function Footer() {
                 <li>Roadmap</li>
                 <li>Pricing</li>
             </ul>
-        </div>
+        </div> */}
         <div className='footer-column'>
             <p className='footer-title'>Company</p>
             <ul>

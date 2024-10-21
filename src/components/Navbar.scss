@@ -1,11 +1,20 @@
 nav {
     background-color: transparent;
-    padding: 15px;
-    flex-direction: row-reverse;
+    padding: 15px 30px;
+    justify-content: space-between;
+    align-items: center;
     display: flex;
+    h2 {
+        width: 700px;
+        font-weight: bold;
+    }
+    img {
+        height: 60px;
+    }
     ul {
         display: flex;
         list-style: none;
+        align-items: center;
         li {
             font-size: 1.4rem;
             border-radius: 8px;
