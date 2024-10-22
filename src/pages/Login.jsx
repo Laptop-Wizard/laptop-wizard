@@ -77,12 +77,12 @@ function Login() {
                     <p>Glad you're back!</p>
                     <input type="text" placeholder='Email' />
                     <input type="password" placeholder='Password' />
-                    <div>
+                    {/* <div>
                         <input id='remember-checkbox' type="checkbox" />
                         <label htmlFor="remember-checkbox">Remember Me</label>
-                    </div>
+                    </div> */}
                     <button className='purple-gradient' onClick={handleLogin}>Login</button>
-                    <a className='text-center' onClick={() => setOption(Options.FORGOT)}>Forgot Password</a>
+                    {/* <a className='text-center' onClick={() => setOption(Options.FORGOT)}>Forgot Password</a> */}
                 </>)
           case Options.SIGNUP:
             return (<>
@@ -119,11 +119,11 @@ function Login() {
                 {(option == Options.LOGIN || option == Options.SIGNUP) && 
                     <div>
                         <div id="or">Or</div>
-                        <div className='icons flex justify-center'>
+                        {/* <div className='icons flex justify-center'>
                             <img src={google} />
                             <img src={facebook} />
                             <img src={github} />
-                        </div>
+                        </div> */}
                     </div>
                 }
                 <div className='links flex column'>
@@ -134,11 +134,11 @@ function Login() {
                     <div>
                         {option == Options.LOGIN && <Link to="/tech-register">Register as Technician</Link>}
                     </div>
-                    <div className='flex space-between'>
+                    {/* <div className='flex space-between'>
                         <a href="">Terms & Conditions</a>
                         <a href="">Support</a>
                         <a href="">Customer Care</a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

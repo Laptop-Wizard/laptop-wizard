@@ -173,7 +173,9 @@ def ask_query():
         f"Question: {question}\n"
         f"If solution to the question is found within the provided document, return that."
         f"If not, answer the question as you normally would."
-        f"Don't mention anything about the context."
+        # f"Don't mention anything about the context."
+        f"Don't mention anything about the chat history or document, use it as knowledge base."
+        f"Answer all questions with respect to user's model name if provided in knowledge base."
     )
     response = model.generate_content(combined_input)
     # response = model.generate_content(question)
