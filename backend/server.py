@@ -31,7 +31,7 @@ mongo = client.laptopwizard
 
 def get_text_chunks(text):
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=10000, chunk_overlap=1000)
+        chunk_size=500, chunk_overlap=100)
     chunks = text_splitter.split_text(text)
     return chunks
 
@@ -41,8 +41,6 @@ def process_pdf():
     try:
         # pdf_docs = request.files.getlist('file')
         filepath = os.path.join(os.path.dirname(__file__),'issues.pdf')
-        # pdf_docs =  get_pdf_text('file')
-        # raw_text = get_pdf_text(pdf_docs)
         raw_text = get_pdf_text(filepath)
         text_chunks = get_text_chunks(raw_text)
 
@@ -56,49 +54,29 @@ def process_pdf():
         print(f"Error in process_pdf: {e}")
         return jsonify({'error': 'Internal Server Error'})
 
-# def get_conversational_chain():
-#     prompt_template = """
-#     Answer the question as detailed as possible from the provided context, make sure to provide all the details, if the answer is not in
-#     provided context just say, "answer is not available in the context", don't provide the wrong answer\n\n
-#     Context:\n {context}?\n
-#     Question: \n{question}\n
-
-#     Answer:
-#     """
-#     model = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.3)
-#     prompt = PromptTemplate(template=prompt_template,
-#                             input_variables=["context", "question"])
-#     chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
-#     return chain
-
-
-# test comment
 # def user_input(user_question):
-#     # Load GoogleGenerativeAIEmbeddings
+#     # Load GoogleGenerativeAIEmbeddings and FAISS
 #     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
-#     new_db = FAISS.load_local(
-#         "faiss_index", embeddings, allow_dangerous_deserialization=True)
+#     new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
+    
 #     docs = new_db.similarity_search(user_question)
-#     # chain = get_conversational_chain()
-#     # response = chain.invoke(
-#         # {"input_documents": docs, "question": user_question}, return_only_outputs=True)
-#     print(docs)
-#     # return response["output_text"]
-#     return docs
+    
+#     context = "\n".join([doc.page_content for doc in docs[:5]])  # Example: Taking the top 5 chunks
+    
+#     return context  # Return relevant chunks as context
 
 def user_input(user_question):
     # Load GoogleGenerativeAIEmbeddings and FAISS
     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
     
-    # Perform similarity search to find relevant document chunks
-    docs = new_db.similarity_search(user_question)
+    # Perform similarity search with scores
+    docs_with_scores = new_db.similarity_search_with_score(user_question)
     
-    # Combine the retrieved documents into a context for the model
-    # Limit the context to ensure it fits within the model's token limit
-    context = "\n".join([doc.page_content for doc in docs[:5]])  # Example: Taking the top 5 chunks
+    # Extract page content and scores from the top 5 documents
+    context_with_scores = "\n\n".join([f"Score: {score}\nContent: {doc.page_content}" for doc, score in docs_with_scores[:5]])
     
-    return context  # Return relevant chunks as context
+    return context_with_scores  # Return relevant chunks with their scores
 
 def get_pdf_text(file_path):
     reader = PdfReader(file_path)
@@ -137,6 +115,7 @@ def ask_query():
 
     # Retrieve relevant chunks based on the user's question
     relevant_chunks = user_input(question)
+    print(relevant_chunks)
 
     model = genai.GenerativeModel("gemini-1.5-flash")
     summarization_prompt =  """
